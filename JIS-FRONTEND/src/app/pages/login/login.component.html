@@ -1,0 +1,44 @@
+<div class="login-container">
+  <div class="container">
+    <div class="row">
+      <div class="col left-col">
+        <img [src]="imageSrc" class="login-image" alt="login-image" />
+      </div>
+      <div class="col right-col">
+        <div class="logo-row">
+          <img src="logo.jpg" alt="logo" class="logo-img" />
+          <h1>Department Of Justice</h1>
+        </div>
+
+        <h5 class="sub-heading">Sign into your account</h5>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <input
+            type="text"
+            formControlName="userName"
+            placeholder="User Name"
+          />
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+          />
+
+          <button type="submit">Login</button>
+        </form>
+
+        <a class="link" routerLink="/">Forgot password?</a>
+
+        <p>
+          Don't have an account?
+          <span class="link" (click)="goToSignup()">Create New</span>
+        </p>
+
+        <div class="footer-links">
+          <a class="link" routerLink="/termsofuse">Terms of use</a>
+          <a class="link" routerLink="/privacypolicy">Privacy policy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

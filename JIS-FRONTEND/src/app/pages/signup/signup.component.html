@@ -1,0 +1,142 @@
+<div class="sign-body">
+  <div class="sign-container">
+    <h1 class="sign-form-title">Registration</h1>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+      <div class="sign-main-user-info">
+
+        <div class="sign-user-input-box">
+          <label for="fullName">Full Name</label>
+          <input
+            type="text"
+            id="fullName"
+            formControlName="fullName"
+            placeholder="Enter Full Name"
+          />
+          <div class="error" *ngIf="signupForm.get('fullName')?.touched && signupForm.get('fullName')?.invalid">
+            <small *ngIf="signupForm.get('fullName')?.errors?.['required']">Full Name is required.</small>
+            <small *ngIf="signupForm.get('userName')?.errors?.['required']">Username is required.</small>
+          </div>
+        </div>
+
+        <div class="sign-user-input-box">
+          <label for="userName">Username</label>
+          <input
+            type="text"
+            id="userName"
+            formControlName="userName"
+            placeholder="Enter Username"
+          />
+          <div class="error" *ngIf="signupForm.get('userName')?.touched && signupForm.get('userName')?.invalid">
+            <small *ngIf="signupForm.get('userName')?.errors?.['required']">Username is required.</small>
+            <small *ngIf="signupForm.get('userName')?.errors?.['minlength']">Minimum 3 characters required.</small>
+          </div>
+        </div>
+
+        <div class="sign-user-input-box">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            placeholder="Enter Email"
+          />
+          <div class="error" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid">
+            <small *ngIf="signupForm.get('email')?.errors?.['required']">Email is required.</small>
+            <small *ngIf="signupForm.get('email')?.errors?.['email']">Enter a valid email.</small>
+          </div>
+        </div>
+
+        <div class="sign-user-input-box">
+          <label for="mobileNo">Phone Number</label>
+          <input
+            type="text"
+            id="mobileNo"
+            formControlName="mobileNo"
+            placeholder="Enter Phone Number"
+          />
+          <div class="error" *ngIf="signupForm.get('mobileNo')?.touched && signupForm.get('mobileNo')?.invalid">
+            <small *ngIf="signupForm.get('mobileNo')?.errors?.['required']">Phone number is required.</small>
+            <small *ngIf="signupForm.get('mobileNo')?.errors?.['pattern']">Enter a valid 10-digit phone number.</small>
+          </div>
+        </div>
+
+        <div class="sign-user-input-box">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            placeholder="Enter Password"
+          />
+          <div class="error" *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.invalid">
+            <small *ngIf="signupForm.get('password')?.errors?.['required']">Password is required.</small>
+            <small *ngIf="signupForm.get('password')?.errors?.['minlength']">Minimum 6 characters required.</small>
+          </div>
+        </div>
+
+        <div class="sign-user-input-box">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            formControlName="confirmPassword"
+            placeholder="Confirm Password"
+          />
+          <div class="error" *ngIf="signupForm.get('confirmPassword')?.touched && signupForm.get('confirmPassword')?.invalid">
+            <small *ngIf="signupForm.get('confirmPassword')?.errors?.['required']">Confirm Password is required.</small>
+            <small *ngIf="signupForm.get('confirmPassword')?.errors?.['passwordMismatch']">Passwords do not match.</small>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="sign-gender-details-box">
+        <span class="sign-gender-title">Gender</span>
+        <div class="sign-gender-category">
+          <label>
+            <input type="radio" formControlName="gender" value="male" /> Male
+          </label>
+          <label>
+            <input type="radio" formControlName="gender" value="female" /> Female
+          </label>
+          <label>
+            <input type="radio" formControlName="gender" value="other" /> Other
+          </label>
+          <div class="error" *ngIf="signupForm.get('gender')?.touched && signupForm.get('gender')?.invalid">
+            <small>Gender is required.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="sign-gender-details-box">
+        <span class="sign-gender-title">Login As</span>
+        <div class="sign-gender-category">
+          <label>
+            <input type="radio" formControlName="type" value="judge" /> Judge
+          </label>
+          <label>
+            <input type="radio" formControlName="type" value="lawyer" /> Lawyer
+          </label>
+          <label>
+            <input type="radio" formControlName="type" value="registrar" /> Registrar
+          </label>
+          <p
+            style="color: blue; font-size: 18px; float: right; cursor: pointer;"
+            (click)="gotoLogin()"
+          >
+            Login
+          </p>
+          <div class="error" *ngIf="signupForm.get('type')?.touched && signupForm.get('type')?.invalid">
+            <small>User type is required.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="sign-form-submit-btn">
+        <button type="submit">Register</button>
+      </div>
+
+    </form>
+  </div>
+</div>
