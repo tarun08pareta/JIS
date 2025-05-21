@@ -1,30 +1,52 @@
 <nav class="navbar navbar-expand-lg bg-primary text-white py-2">
-  <div class="container-fluid px-3">
-    <img src="logo.jpg" alt="not found" class="logo_jis me-2" style="height: 40px;" />
+  <div class="container-fluid px-3 ">
+    <img src="logo.jpg" alt="not found" routerLink="/" class="logo_jis me-2 cursor-pointer" style="height: 40px;" />
 
-    <button
-      class="navbar-toggler text-white"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item mx-1">
-          <a class="nav-link active text-white small" routerLink="/">Home</a>
-        </li>
-        <li class="nav-item mx-1">
-          <a class="nav-link text-white small" routerLink="/login">Login</a>
-        </li>
-        <li class="nav-item mx-1">
-          <a class="nav-link text-white small" routerLink="/signup">Signup</a>
-        </li>
+        <!-- Dynamic navigation items based on login status -->
+        <ng-container *ngIf="!isLoggedIn; else loggedInMenu">
+          <li class="nav-item mx-1" *ngFor="let item of guestNavItems">
+            <a class="nav-link text-white small" [routerLink]="item.path" routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact: true}">
+              {{ item.title }}
+            </a>
+          </li>
+        </ng-container>
+
+        <ng-template #loggedInMenu>
+          <ng-container *ngFor="let item of navItems">
+
+            <!-- Dropdown menu if children exist -->
+            <li *ngIf="item.children; else singleItem" class="nav-item dropdown mx-1">
+              <a class="nav-link dropdown-toggle text-white small" href="#" role="button" data-bs-toggle="dropdown">
+                {{ item.title }}
+              </a>
+              <ul class="dropdown-menu">
+                <li *ngFor="let child of item.children">
+                  <a class="dropdown-item" [routerLink]="child.path">{{ child.title }}</a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Normal menu item -->
+            <ng-template #singleItem>
+              <li class="nav-item mx-1">
+                <a *ngIf="'path' in item" class="nav-link text-white small" [routerLink]="item.path"
+                  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="item.action === 'logout' ? handleLogout() : null">
+                  {{ item.title }}
+                </a>
+              </li>
+            </ng-template>
+
+          </ng-container>
+        </ng-template>
       </ul>
     </div>
   </div>

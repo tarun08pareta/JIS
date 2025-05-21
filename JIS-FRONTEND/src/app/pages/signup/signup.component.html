@@ -9,13 +9,13 @@
           <label for="fullName">Full Name</label>
           <input
             type="text"
-            id="fullName"
-            formControlName="fullName"
+            id="name"
+            formControlName="name"
             placeholder="Enter Full Name"
           />
-          <div class="error" *ngIf="signupForm.get('fullName')?.touched && signupForm.get('fullName')?.invalid">
-            <small *ngIf="signupForm.get('fullName')?.errors?.['required']">Full Name is required.</small>
-            <small *ngIf="signupForm.get('userName')?.errors?.['required']">Username is required.</small>
+          <div class="error" *ngIf="signupForm.get('name')?.touched && signupForm.get('fullName')?.invalid">
+            <small *ngIf="signupForm.get('name')?.errors?.['required']">Full Name is required.</small>
+            <small *ngIf="signupForm.get('name')?.errors?.['required']">Username is required.</small>
           </div>
         </div>
 
@@ -113,13 +113,13 @@
         <span class="sign-gender-title">Login As</span>
         <div class="sign-gender-category">
           <label>
-            <input type="radio" formControlName="type" value="judge" /> Judge
+            <input type="radio" formControlName="role" value="Judge" /> Judge
           </label>
           <label>
-            <input type="radio" formControlName="type" value="lawyer" /> Lawyer
+            <input type="radio" formControlName="role" value="Lawyer" /> Lawyer
           </label>
           <label>
-            <input type="radio" formControlName="type" value="registrar" /> Registrar
+            <input type="radio" formControlName="role" value="Registrar" /> Registrar
           </label>
           <p
             style="color: blue; font-size: 18px; float: right; cursor: pointer;"

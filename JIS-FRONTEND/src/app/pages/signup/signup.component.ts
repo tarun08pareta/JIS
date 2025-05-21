@@ -1,26 +1,41 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
+import { ServiceService } from '../../api/service.service';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.css'
+  styleUrl: './signup.component.css',
 })
 export class SignupComponent {
- signupForm: FormGroup;
+  signupForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
-    this.signupForm = this.fb.group({
-      fullName: ['', [Validators.required, Validators.minLength(3)]],
-      userName: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      mobileNo: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
-      gender: ['', Validators.required],
-      type: ['', Validators.required]
-    }, { validators: this.passwordMatchValidator });
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private api: ServiceService,
+    private toast: HotToastService
+  ) {
+    this.signupForm = this.fb.group(
+      {
+        name: ['', [Validators.required, Validators.minLength(3)]],
+        userName: ['', [Validators.required, Validators.minLength(3)]],
+        email: ['', [Validators.required, Validators.email]],
+        mobileNo: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword: ['', Validators.required],
+        gender: ['', Validators.required],
+        role: ['', Validators.required],
+      },
+      { validators: this.passwordMatchValidator }
+    );
   }
 
   // Custom validator to check if password and confirmPassword match
@@ -37,14 +52,26 @@ export class SignupComponent {
 
   onSubmit() {
     if (this.signupForm.valid) {
-      alert('Registered Successfully');
-      this.signupForm.reset();
+      const { confirmPassword, ...userData } = this.signupForm.value;
+
+      this.api.register(userData).subscribe({
+        next: (response) => {
+          localStorage.setItem('user', JSON.stringify({ response }));
+          this.toast.success('Registered Successfully');
+          this.signupForm.reset();
+          this.router.navigate(['/']);
+        },
+        error: (error) => {
+          this.toast.error('Registration Failed');
+          console.error(error);
+        },
+      });
     } else {
       this.signupForm.markAllAsTouched();
     }
   }
 
-   gotoLogin() {
+  gotoLogin() {
     this.router.navigate(['/login']);
   }
 }
