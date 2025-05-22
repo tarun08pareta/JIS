@@ -96,4 +96,15 @@ public function login(Request $request)
             'message' => 'Successfully logged out'
         ]);
     }
+
+    public function getJudge()
+    {
+        $users=User::whereIn('role', ['Judge',])->get();
+        return $users;
+    }
+    public function getLawyer()
+    {
+        $users=User::whereIn('role', ['Lawyer'])->get();
+        return $users;
+    }
 }

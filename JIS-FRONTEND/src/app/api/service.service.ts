@@ -32,4 +32,19 @@ export class ServiceService {
     });
     return this.http.post(url, {}, { headers });
   }
+
+  getJudges(){
+    const url = `${baseUrl}${endPoint.getJudges}`;
+    return this.http.get(url);
+  }
+
+  getLawyer(){
+    const url = `${baseUrl}${endPoint.getLawyer}`;
+    return this.http.get(url);
+  }
+
+  addCase(data:any){
+    const url = `${baseUrl}${endPoint.addCase}`;
+    return this.http.post(url,data);
+  }
 }

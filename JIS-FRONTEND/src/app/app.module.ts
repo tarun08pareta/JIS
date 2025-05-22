@@ -14,6 +14,9 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {  provideHotToastConfig } from '@ngneat/hot-toast';
+import { AboutComponent } from './pages/about/about.component';
+import { CaseComponent } from './registrar/case/case.component';
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,13 +27,16 @@ import {  provideHotToastConfig } from '@ngneat/hot-toast';
     FooterComponent,
     HomeComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    AboutComponent,
+    CaseComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    CommonModule
   ],
   providers: [ provideHotToastConfig({position: 'top-right'}),],
   bootstrap: [AppComponent]

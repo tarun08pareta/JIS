@@ -1,0 +1,126 @@
+<div class="container py-4">
+  <!-- Header with subtle background -->
+  <div class="bg-primary bg-opacity-10 rounded-3 p-4 mb-4">
+    <div class="text-center">
+      <h1 class="display-5 fw-bold text-primary mb-2">Add New Case</h1>
+      <p class="lead text-muted">Complete all required fields to register a new case</p>
+    </div>
+  </div>
+
+  <!-- Alert Messages -->
+  <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show mb-4">
+    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+    {{ errorMessage }}
+    <button type="button" class="btn-close" (click)="errorMessage = ''"></button>
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show mb-4">
+    <i class="bi bi-check-circle-fill me-2"></i>
+    {{ successMessage }}
+    <button type="button" class="btn-close" (click)="successMessage = ''"></button>
+  </div>
+
+  <!-- Main Form Card -->
+  <div class="card border-0 shadow-lg overflow-hidden">
+    <div class="card-body p-0">
+      <form [formGroup]="caseForm" (ngSubmit)="onSubmit()">
+        <div class="row g-0">
+          <!-- Left Column -->
+          <div class="col-lg-6 p-4 border-end border-primary border-opacity-10">
+            <h5 class="text-uppercase text-primary mb-4 fw-bold">
+              <i class="bi bi-person-badge me-2"></i>Defendant Information
+            </h5>
+
+            <div class="form-floating mb-3">
+              <input class="form-control border-0 border-bottom" id="defendantName" formControlName="defendantName" type="text" required placeholder=" " />
+              <label for="defendantName" class="text-muted">Defendant Name</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input class="form-control border-0 border-bottom" id="defendantAddress" formControlName="defendantAddress" type="text" required placeholder=" " />
+              <label for="defendantAddress" class="text-muted">Defendant Address</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input class="form-control border-0 border-bottom" id="crimeType" formControlName="crimeType" type="text" required placeholder=" " />
+              <label for="crimeType" class="text-muted">Crime Type</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input class="form-control border-0 border-bottom" id="dateCommitted" formControlName="dateCommitted" type="date" required placeholder=" " />
+              <label for="dateCommitted" class="text-muted">Date Committed</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input class="form-control border-0 border-bottom" id="locationCommitted" formControlName="locationCommitted" type="text" required placeholder=" " />
+              <label for="locationCommitted" class="text-muted">Location Committed</label>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="col-lg-6 p-4">
+            <h5 class="text-uppercase text-primary mb-4 fw-bold">
+              <i class="bi bi-file-earmark-text me-2"></i>Case Details
+            </h5>
+
+            <div class="form-floating mb-3">
+              <input class="form-control border-0 border-bottom" id="arrestingOfficer" formControlName="arrestingOfficer" type="text" required placeholder=" " />
+              <label for="arrestingOfficer" class="text-muted">Arresting Officer</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input class="form-control border-0 border-bottom" id="CIN" formControlName="CIN" type="text" required placeholder=" " />
+              <label for="CIN" class="text-muted">CIN</label>
+            </div>
+
+            <div class="mb-3">
+              <label for="judgeSelect" class="form-label text-muted">Judge</label>
+              <select class="form-select border-0 border-bottom rounded-0 py-3 ps-0" id="judgeSelect" formControlName="judge_id" required>
+                <option value="" disabled selected>Select Judge</option>
+                <option *ngFor="let judge of Judge" [value]="judge.id">
+                  {{ judge.name }}
+                </option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="lawyerSelect" class="form-label text-muted">Lawyers</label>
+              <select class="form-select border-0 border-bottom rounded-0 py-3 ps-0" id="lawyerSelect" formControlName="lawyer_id" required>
+                <option value="" disabled selected>Select Lawyer</option>
+                <option *ngFor="let lawyer of lawyers" [value]="lawyer.id">
+                  {{ lawyer.name }}
+                </option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="statusSelect" class="form-label text-muted">Status</label>
+              <select class="form-select border-0 border-bottom rounded-0 py-3 ps-0" id="statusSelect" formControlName="status">
+                <option value="pending">Pending</option>
+                <option value="ongoing">Ongoing</option>
+                <option value="closed">Closed</option>
+              </select>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input class="form-control border-0 border-bottom" id="victim" formControlName="victim" type="text" required placeholder=" " />
+              <label for="victim" class="text-muted">Victim</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button Section -->
+        <div class="bg-light p-4 border-top">
+          <div class="d-flex justify-content-between align-items-center">
+            <button type="button" class="btn btn-outline-secondary" (click)="caseForm.reset()">
+              <i class="bi bi-arrow-counterclockwise me-2"></i>Reset Form
+            </button>
+            <button class="btn btn-primary px-4 py-2" type="submit" [disabled]="caseForm.invalid">
+              <i class="bi bi-save me-2"></i>Submit Case
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
