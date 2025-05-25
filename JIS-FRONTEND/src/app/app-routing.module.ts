@@ -8,6 +8,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { NoAuthGuard } from './guards/noauth.guard';
 import { AboutComponent } from './pages/about/about.component';
 import { CaseComponent } from './registrar/case/case.component';
+import { CaseListComponent } from './registrar/case-list/case-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Check for redirects
@@ -17,6 +18,13 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   {
     path: 'case',component:CaseComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+  path: 'case/:id', component: CaseComponent, canActivate: [AuthGuard]
+},
+  {
+    path: 'case-list',component:CaseListComponent,
     canActivate: [AuthGuard],
   },
 ];

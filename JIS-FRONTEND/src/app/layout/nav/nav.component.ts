@@ -8,10 +8,10 @@ import { HotToastService } from '@ngneat/hot-toast';
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss',
 })
-export class NavComponent  implements OnInit {
+export class NavComponent implements OnInit {
   isLoggedIn: boolean = false;
-navItems: any[] = [];
- userRole: string | null = null;
+  navItems: any[] = [];
+  userRole: string | null = null;
   userData: any;
 
   // Navigation items for logged out users
@@ -27,11 +27,10 @@ navItems: any[] = [];
     private toast: HotToastService
   ) {
     // Check authentication status when component initializes
-
   }
 
   ngOnInit(): void {
- this.checkAuthStatus();
+    this.checkAuthStatus();
   }
   checkAuthStatus() {
     const userDataString = localStorage.getItem('user');
@@ -43,7 +42,7 @@ navItems: any[] = [];
     } else {
       this.isLoggedIn = false;
       this.userRole = null;
-       this.navItems = this.guestNavItems;
+      this.navItems = this.guestNavItems;
     }
   }
 
@@ -52,37 +51,36 @@ navItems: any[] = [];
 
     const commonItems = [
       { path: '/', title: 'Home', active: true },
-      { path: '/logout', title: 'Logout', active: false, action: 'logout' }
+      { path: '/logout', title: 'Logout', active: false, action: 'logout' },
     ];
 
-    switch(this.userRole) {
+    switch (this.userRole) {
       case 'Registrar':
         return [
-
           { path: '/about', title: 'About', active: false },
           {
             title: 'Case',
             active: false,
             children: [
               { path: '/case/add', title: 'Add Case' },
-              { path: '/case/update', title: 'Update Case' }
-            ]
+              { path: '/case/update', title: 'Update Case' },
+            ],
           },
           {
             title: 'Schedule',
             active: false,
             children: [
               { path: '/schedule/add', title: 'Add Schedule' },
-              { path: '/schedule/update', title: 'Update Schedule' }
-            ]
+              { path: '/schedule/update', title: 'Update Schedule' },
+            ],
           },
- ...commonItems,
+          ...commonItems,
         ];
       case 'Judge':
         return [
           { path: '/about', title: 'About', active: false },
           { path: '/case-study', title: 'Case Study', active: false },
-           ...commonItems,
+          ...commonItems,
         ];
       case 'Lawyer':
         return [
@@ -90,7 +88,7 @@ navItems: any[] = [];
           { path: '/case-study', title: 'Case Study', active: false },
           { path: '/profile', title: 'Profile', active: false },
           { path: '/payment', title: 'Payment', active: false },
-           ...commonItems,
+          ...commonItems,
         ];
       default:
         return commonItems;
@@ -98,17 +96,14 @@ navItems: any[] = [];
   }
 
   handleLogout() {
-
-    if(localStorage.getItem('user')){
-      this.api.logout()
+    if (localStorage.getItem('user')) {
+      this.api.logout();
       localStorage.removeItem('user');
       this.isLoggedIn = false;
       this.router.navigate(['/login']);
-    this.toast.success('Logout Successfully');
-    }else{
-this.toast.error('You are not logout');
+      this.toast.success('Logout Successfully');
+    } else {
+      this.toast.error('You are not logout');
     }
-
-
   }
 }

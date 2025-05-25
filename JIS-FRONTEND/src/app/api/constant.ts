@@ -5,6 +5,7 @@ export const endPoint = {
   logout: '/logout',
   getJudges: '/judges',
   getLawyer:'/lawyers',
-  addCase:'/registrar/case'
+  case:'/registrar/case',
+  allCase:'/registrar/allcases'
 
 };

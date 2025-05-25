@@ -17,6 +17,16 @@ import {  provideHotToastConfig } from '@ngneat/hot-toast';
 import { AboutComponent } from './pages/about/about.component';
 import { CaseComponent } from './registrar/case/case.component';
 import { CommonModule } from '@angular/common';
+import { CaseListComponent } from './registrar/case-list/case-list.component';
+import { DeleteConfirmModalComponent } from './registrar/case-list/delete-confirm-modal/delete-confirm-modal.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,16 +39,23 @@ import { CommonModule } from '@angular/common';
     LoginComponent,
     SignupComponent,
     AboutComponent,
-    CaseComponent
+    CaseComponent,
+    CaseListComponent,
+    DeleteConfirmModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+     MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule, MatSelectModule
   ],
-  providers: [ provideHotToastConfig({position: 'top-right'}),],
+  providers: [ provideHotToastConfig({position: 'top-right'}), provideAnimationsAsync(),],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

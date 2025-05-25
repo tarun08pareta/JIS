@@ -1,0 +1,60 @@
+<div class="container py-5">
+  <div class="card shadow border-0">
+    <div class="card-body">
+      <h4 class="text-primary fw-bold mb-4">All Cases</h4>
+
+      <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+          <thead class="table-primary">
+            <tr>
+              <th>#</th>
+              <th>Defendant</th>
+              <th>Crime Type</th>
+              <th>Date Committed</th>
+              <th>Location</th>
+              <th>Officer</th>
+              <th>Status</th>
+              <th>Victim</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let caseItem of caseList; index as i">
+              <td>{{ i + 1 }}</td>
+              <td>{{ caseItem.defendantName }}</td>
+              <td>{{ caseItem.crimeType }}</td>
+              <td>{{ caseItem.dateCommitted }}</td>
+              <td>{{ caseItem.locationCommitted }}</td>
+              <td>{{ caseItem.arrestingOfficer }}</td>
+              <td>
+                <span
+                  class="badge"
+                  [ngClass]="{
+                    'bg-warning text-dark': caseItem.status === 'pending',
+                    'bg-info': caseItem.status === 'ongoing',
+                    'bg-success': caseItem.status === 'closed'
+                  }"
+                >
+                  {{ caseItem.status }}
+                </span>
+              </td>
+              <td>{{ caseItem.victim }}</td>
+              <td>
+                  <button class="btn btn-sm btn-warning me-2"  [routerLink]="['/case', caseItem.id]">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" (click)="onDelete(caseItem.id)" >
+              <i class="fas fa-trash-alt"></i>
+            </button>
+              </td>
+            </tr>
+
+            <tr *ngIf="caseList.length === 0">
+              <td colspan="9" class="text-center text-muted py-3">No cases found</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,7 @@ import { baseUrl, endPoint } from './constant';
   providedIn: 'root',
 })
 export class ServiceService {
+
   //  private headers: HttpHeaders;
   constructor(private http: HttpClient, private router: Router) {
 
@@ -44,7 +45,25 @@ export class ServiceService {
   }
 
   addCase(data:any){
-    const url = `${baseUrl}${endPoint.addCase}`;
+    const url = `${baseUrl}${endPoint.case}`;
     return this.http.post(url,data);
+  }
+
+  updateCase(data:any){
+    const url = `${baseUrl}${endPoint.case}/${data.id}`;
+    return this.http.post(url,data);
+  }
+ getCaseById(id: string) {
+  const url = `${baseUrl}${endPoint.case}/${id}`;
+  return this.http.get(url);
+}
+
+deleteCase(id: string) {
+  const url = `${baseUrl}${endPoint.case}/${id}`;
+  return this.http.delete(url);
+}
+  allCase(){
+    const url = `${baseUrl}${endPoint.allCase}`;
+    return this.http.get(url);
   }
 }

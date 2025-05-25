@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceService } from '../../api/service.service';
 import { HotToastService } from '@ngneat/hot-toast';
+import { LoadingService } from '../../api/loading.service';
 
 @Component({
   selector: 'app-case',
@@ -15,12 +16,15 @@ export class CaseComponent implements OnInit {
   successMessage = '';
   lawyers: any[] = [];
   Judge: any[] = [];
+  caseId: string | null = null;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private api: ServiceService,
-    private toast: HotToastService
+    private toast: HotToastService,
+    private route: ActivatedRoute,
+    private loadingService: LoadingService
   ) {
     this.caseForm = this.fb.group({
       defendantName: ['', Validators.required],
@@ -37,42 +41,74 @@ export class CaseComponent implements OnInit {
     });
   }
 
-
   ngOnInit(): void {
-    this.api.getLawyer().subscribe((data:any) => {
-      this.lawyers= data;
+    this.route.paramMap.subscribe((params) => {
+      this.caseId = params.get('id');
+      console.log('case id+',this.caseId)
+      if (this.caseId) {
+        this.api.getCaseById(this.caseId).subscribe((data: any) => {
+          console.log('data',data)
+          this.caseForm = this.fb.group({
+            defendantName: data.data.defendantName,
+            defendantAddress: [data.data.defendantAddress, Validators.required],
+            crimeType: [data.data.crimeType, Validators.required],
+            dateCommitted: [data.data.dateCommitted, Validators.required],
+            locationCommitted: [data.data.locationCommitted, Validators.required],
+            arrestingOfficer: [data.data.arrestingOfficer, Validators.required],
+            CIN: [data.data.CIN, Validators.required],
+            judge_id: [data.data.judge_id, Validators.required],
+            lawyer_id: [data.data.lawyer_id, Validators.required],
+            status: [data.data.status, Validators.required],
+            victim: [data.data.victim, Validators.required],
+          });
+          this.caseForm.patchValue(this.caseForm);
+          console.log('form value after edit button click',this.caseForm.value);
+        });
+      }
+    });
+    this.api.getLawyer().subscribe((data: any) => {
+      this.lawyers = data;
       console.log(this.lawyers);
     });
-    this.api.getJudges().subscribe((data:any) => {
-      this.Judge= data;
+    this.api.getJudges().subscribe((data: any) => {
+      this.Judge = data;
       console.log(this.Judge);
-    })
+    });
   }
   onSubmit() {
     if (this.caseForm.invalid) {
       this.toast.error('Please fill in all required fields.');
-      this.successMessage = '';
       return;
     }
 
-    const formData = {
-      ...this.caseForm.value,
-    };
+    const formData = this.caseForm.value;
 
-    console.log('Form Data:', formData);
+    if (this.caseId) {
+      // UPDATE MODE
+      this.api.updateCase({ ...formData, id: this.caseId }).subscribe(
+        () => {
+          this.toast.success('Case updated successfully!');
+         this.router.navigate(['/case-list']);        },
+        (error) => {
+          console.error('Update error:', error);
+          this.toast.error('Failed to update case');
+        }
+      );
+    } else {
+      // CREATE MODE
+      this.api.addCase(formData).subscribe(
+        () => {
+          this.toast.success('Case submitted successfully!');
+          this.caseForm.reset({ status: 'pending' });
 
-    this.api.addCase(formData).subscribe(
-      (response) => {
-        this.toast.success('Case submitted successfully:');
-        this.successMessage = 'Case submitted successfully!';
-        this.errorMessage = '';
-        this.caseForm.reset({ status: 'pending' }); // reset while keeping default
-      },
-      (error) => {
-        console.error('Error submitting case:', error);
-        this.errorMessage = 'Error submitting case. Please try again.';
-        this.successMessage = '';
-      }
-    ); // reset while keeping default
+          this.router.navigate(['/case-list']);
+
+        },
+        (error) => {
+          console.error('Create error:', error);
+          this.toast.error('Failed to submit case');
+        }
+      );
+    }
   }
 }

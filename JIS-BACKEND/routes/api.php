@@ -22,7 +22,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::prefix('registrar')->group(function () {
     Route::post('/case', [CourtCaseController::class, 'store']);
-    Route::put('/case/{id}', [CourtCaseController::class, 'update']);
+    Route::get('/case/{id}', [CourtCaseController::class, 'show']);
+    Route::post('/case/{id}', [CourtCaseController::class, 'update']);
     Route::delete('/case/{id}', [CourtCaseController::class, 'destroy']);
     Route::get('/allcases', [CourtCaseController::class, 'index']);
 });

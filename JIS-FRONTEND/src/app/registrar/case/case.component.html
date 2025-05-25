@@ -32,27 +32,32 @@
             </h5>
 
             <div class="form-floating mb-3">
-              <input class="form-control border-0 border-bottom" id="defendantName" formControlName="defendantName" type="text" required placeholder=" " />
+              <input class="form-control border-0 border-bottom" id="defendantName" formControlName="defendantName"
+                type="text" required placeholder=" " />
               <label for="defendantName" class="text-muted">Defendant Name</label>
             </div>
 
             <div class="form-floating mb-3">
-              <input class="form-control border-0 border-bottom" id="defendantAddress" formControlName="defendantAddress" type="text" required placeholder=" " />
+              <input class="form-control border-0 border-bottom" id="defendantAddress"
+                formControlName="defendantAddress"  type="text" required placeholder=" " />
               <label for="defendantAddress" class="text-muted">Defendant Address</label>
             </div>
 
             <div class="form-floating mb-3">
-              <input class="form-control border-0 border-bottom" id="crimeType" formControlName="crimeType" type="text" required placeholder=" " />
+              <input class="form-control border-0 border-bottom" id="crimeType" formControlName="crimeType" type="text"
+                required placeholder=" " />
               <label for="crimeType" class="text-muted">Crime Type</label>
             </div>
 
             <div class="form-floating mb-3">
-              <input class="form-control border-0 border-bottom" id="dateCommitted" formControlName="dateCommitted" type="date" required placeholder=" " />
+              <input class="form-control border-0 border-bottom" id="dateCommitted" formControlName="dateCommitted"
+                type="date" required placeholder=" " />
               <label for="dateCommitted" class="text-muted">Date Committed</label>
             </div>
 
             <div class="form-floating mb-3">
-              <input class="form-control border-0 border-bottom" id="locationCommitted" formControlName="locationCommitted" type="text" required placeholder=" " />
+              <input class="form-control border-0 border-bottom" id="locationCommitted"
+                formControlName="locationCommitted" type="text" required placeholder=" " />
               <label for="locationCommitted" class="text-muted">Location Committed</label>
             </div>
           </div>
@@ -64,18 +69,21 @@
             </h5>
 
             <div class="form-floating mb-3">
-              <input class="form-control border-0 border-bottom" id="arrestingOfficer" formControlName="arrestingOfficer" type="text" required placeholder=" " />
+              <input class="form-control border-0 border-bottom" id="arrestingOfficer"
+                formControlName="arrestingOfficer" type="text" required placeholder=" " />
               <label for="arrestingOfficer" class="text-muted">Arresting Officer</label>
             </div>
 
             <div class="form-floating mb-3">
-              <input class="form-control border-0 border-bottom" id="CIN" formControlName="CIN" type="text" required placeholder=" " />
+              <input class="form-control border-0 border-bottom" id="CIN" formControlName="CIN" type="text" required
+                placeholder=" " />
               <label for="CIN" class="text-muted">CIN</label>
             </div>
 
             <div class="mb-3">
               <label for="judgeSelect" class="form-label text-muted">Judge</label>
-              <select class="form-select border-0 border-bottom rounded-0 py-3 ps-0" id="judgeSelect" formControlName="judge_id" required>
+              <select class="form-select border-0 border-bottom rounded-0 py-3 ps-0" id="judgeSelect"
+                formControlName="judge_id" required>
                 <option value="" disabled selected>Select Judge</option>
                 <option *ngFor="let judge of Judge" [value]="judge.id">
                   {{ judge.name }}
@@ -85,17 +93,20 @@
 
             <div class="mb-3">
               <label for="lawyerSelect" class="form-label text-muted">Lawyers</label>
-              <select class="form-select border-0 border-bottom rounded-0 py-3 ps-0" id="lawyerSelect" formControlName="lawyer_id" required>
+              <select class="form-select border-0 border-bottom rounded-0 py-3 ps-0" id="lawyerSelect"
+                formControlName="lawyer_id" required>
                 <option value="" disabled selected>Select Lawyer</option>
                 <option *ngFor="let lawyer of lawyers" [value]="lawyer.id">
                   {{ lawyer.name }}
                 </option>
               </select>
+              
             </div>
 
             <div class="mb-3">
               <label for="statusSelect" class="form-label text-muted">Status</label>
-              <select class="form-select border-0 border-bottom rounded-0 py-3 ps-0" id="statusSelect" formControlName="status">
+              <select class="form-select border-0 border-bottom rounded-0 py-3 ps-0" id="statusSelect"
+                formControlName="status">
                 <option value="pending">Pending</option>
                 <option value="ongoing">Ongoing</option>
                 <option value="closed">Closed</option>
@@ -103,7 +114,8 @@
             </div>
 
             <div class="form-floating mb-3">
-              <input class="form-control border-0 border-bottom" id="victim" formControlName="victim" type="text" required placeholder=" " />
+              <input class="form-control border-0 border-bottom" id="victim" formControlName="victim" type="text"
+                required placeholder=" " />
               <label for="victim" class="text-muted">Victim</label>
             </div>
           </div>
