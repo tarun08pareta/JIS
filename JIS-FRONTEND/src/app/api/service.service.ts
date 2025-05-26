@@ -66,4 +66,33 @@ deleteCase(id: string) {
     const url = `${baseUrl}${endPoint.allCase}`;
     return this.http.get(url);
   }
+
+  caseSchedules(){
+    const url = `${baseUrl}${endPoint.caseSchedules}`;
+    return this.http.get(url);
+  }
+
+  addSchedule(data:any){
+    const url = `${baseUrl}${endPoint.caseSchedules}`;
+    return this.http.post(url,data);
+  }
+
+  getScheduleById(id: string) {
+    const url = `${baseUrl}${endPoint.caseSchedules}/${id}`;
+    return this.http.get(url);
+  }
+  updateCaseSchedule(data:any){
+    const url = `${baseUrl}${endPoint.caseSchedules}/${data.id}`;
+    return this.http.post(url,data);
+  }
+
+  deleteSchedule(id: string) {
+    const url = `${baseUrl}${endPoint.caseSchedules}/${id}`;
+    return this.http.delete(url);
+  }
+
+  CaseDetails(id: string) {
+    const url = `${baseUrl}${endPoint.caseDetails}/${id}/schedules`;
+    return this.http.get(url);
+  }
 }

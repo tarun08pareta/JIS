@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-center mx-auto mt-3">{{ isEditMode ? 'Edit' : 'Add New' }} Schedule</h1>
+    </div>
+  </div>
+
+  <form [formGroup]="scheduleForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="case" class="form-label">Case ID</label>
+      <select class="form-select" id="case" formControlName="case_id" required>
+        <option value="" disabled selected>Select a case</option>
+        <option *ngFor="let caseItem of courtCases" [value]="caseItem.id">
+          {{ caseItem.crimeType }}
+        </option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="date" class="form-label">Date</label>
+      <input type="datetime-local" class="form-control" id="date" formControlName="date" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="location" class="form-label">Location</label>
+      <input type="text" class="form-control" id="location" formControlName="location" required />
+    </div>
+    <div class="mb-3">
+      <label for="case" class="form-label">Status</label>
+      <select class="form-select" id="case" formControlName="status" required>
+        <option value="" disabled selected>Select a case</option>
+        <option value="completed">completed</option>
+        <option value="scheduled">scheduled</option>
+        <option value="cancelled">cancelled</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea class="form-control" id="description" formControlName="description" rows="3" required></textarea>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary mb-3">
+      {{ isEditMode ? 'Update' : 'Create' }} Schedule
+    </button>
+  </form>
+</div>

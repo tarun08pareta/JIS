@@ -34,4 +34,9 @@ class CourtCase extends Model
     {
         return $this->belongsTo(User::class, 'lawyer_id');
     }
+
+     public function schedules()
+    {
+        return $this->hasMany(Schedule::class, 'case_id');
+    }
 }

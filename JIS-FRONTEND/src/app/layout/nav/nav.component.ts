@@ -62,16 +62,14 @@ export class NavComponent implements OnInit {
             title: 'Case',
             active: false,
             children: [
-              { path: '/case/add', title: 'Add Case' },
-              { path: '/case/update', title: 'Update Case' },
+              { path: '/case', title: 'Add Case' },
             ],
           },
           {
             title: 'Schedule',
             active: false,
             children: [
-              { path: '/schedule/add', title: 'Add Schedule' },
-              { path: '/schedule/update', title: 'Update Schedule' },
+              { path: '/case-schedule', title: 'Add Schedule' },
             ],
           },
           ...commonItems,

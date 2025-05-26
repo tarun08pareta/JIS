@@ -1,0 +1,64 @@
+<div class="container my-5" *ngIf="caseData">
+  <!-- Case Details -->
+  <div class="card shadow-lg border-0 mb-5">
+    <div class="card-header bg-dark text-white">
+      <h4 class="mb-0"><i class="fas fa-balance-scale"></i> Court Case Details</h4>
+    </div>
+    <div class="card-body">
+      <div class="row gy-3">
+        <div class="col-md-6"><strong>CIN:</strong> {{ caseData.CIN }}</div>
+        <div class="col-md-6"><strong>Status:</strong>
+          <span class="badge" [ngClass]="{
+            'bg-success': caseData.status === 'completed',
+            'bg-warning text-dark': caseData.status === 'pending'
+          }">{{ caseData.status | titlecase }}</span>
+        </div>
+        <div class="col-md-6"><strong>Defendant Name:</strong> {{ caseData.defendantName }}</div>
+        <div class="col-md-6"><strong>Defendant Address:</strong> {{ caseData.defendantAddress }}</div>
+        <div class="col-md-6"><strong>Victim:</strong> {{ caseData.victim }}</div>
+        <div class="col-md-6"><strong>Crime Type:</strong> {{ caseData.crimeType }}</div>
+        <div class="col-md-6"><strong>Date Committed:</strong> {{ caseData.dateCommitted }}</div>
+        <div class="col-md-6"><strong>Location Committed:</strong> {{ caseData.locationCommitted }}</div>
+        <div class="col-md-6"><strong>Arresting Officer:</strong> {{ caseData.arrestingOfficer }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Schedules -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="text-primary"><i class="fas fa-calendar-alt"></i> Scheduled Hearings</h4>
+    <button class="btn btn-outline-success btn-sm" [routerLink]="['/case-schedule']">
+      <i class="fas fa-plus-circle"></i> Add Schedule
+    </button>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6" *ngFor="let schedule of caseData.schedules">
+      <div class="card border-0 shadow mb-4">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">
+            <i class="fas fa-clock me-2 text-primary"></i> {{ schedule.date | date: 'fullDate' }}
+          </h5>
+        </div>
+        <div class="card-body">
+          <p><strong>Location:</strong> {{ schedule.location }}</p>
+          <p><strong>Description:</strong> {{ schedule.description }}</p>
+          <p><strong>Status:</strong>
+            <span class="badge" [ngClass]="{
+              'bg-success': schedule.status === 'completed',
+              'bg-secondary': schedule.status === 'pending'
+            }">{{ schedule.status }}</span>
+          </p>
+        </div>
+        <div class="card-footer d-flex justify-content-end gap-2 bg-white">
+          <button class="btn btn-sm btn-outline-primary" [routerLink]="['/case-schedule', schedule.id]">
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <button class="btn btn-sm btn-outline-danger" (click)="onDeleteSchedule(schedule.id)">
+            <i class="fas fa-trash-alt"></i> Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\CourtCaseController;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
@@ -26,4 +27,20 @@ Route::prefix('registrar')->group(function () {
     Route::post('/case/{id}', [CourtCaseController::class, 'update']);
     Route::delete('/case/{id}', [CourtCaseController::class, 'destroy']);
     Route::get('/allcases', [CourtCaseController::class, 'index']);
+
+
+
+    Route::prefix('schedules')->group(function () {
+        // Create new schedule with manual case ID
+        Route::post('/', [ScheduleController::class, 'store']);
+
+        // Standard CRUD routes
+        Route::get('/', [ScheduleController::class, 'index']); // Get all schedules
+        Route::get('/{id}', [ScheduleController::class, 'show']);
+        Route::post('/{id}', [ScheduleController::class, 'update']);
+        Route::delete('/{id}', [ScheduleController::class, 'destroy']);
+    });
+
+    Route::get('/court-case/{id}/schedules', [ScheduleController::class, 'getCaseWithSchedules']);
+
 });

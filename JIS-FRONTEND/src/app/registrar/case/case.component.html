@@ -1,9 +1,12 @@
 <div class="container py-4">
-  <!-- Header with subtle background -->
   <div class="bg-primary bg-opacity-10 rounded-3 p-4 mb-4">
     <div class="text-center">
-      <h1 class="display-5 fw-bold text-primary mb-2">Add New Case</h1>
-      <p class="lead text-muted">Complete all required fields to register a new case</p>
+      <h1 class="display-5 fw-bold text-primary mb-2">
+        {{ isEditMode ? 'Edit Case' : 'Add New Case' }}
+      </h1>
+      <p class="lead text-muted">
+        {{ isEditMode ? 'Update the case details' : 'Complete all required fields to register a new case' }}
+      </p>
     </div>
   </div>
 
@@ -100,7 +103,7 @@
                   {{ lawyer.name }}
                 </option>
               </select>
-              
+
             </div>
 
             <div class="mb-3">

@@ -27,6 +27,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { ScheduleCaseComponent } from './registrar/schedule-case/schedule-case.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { CaseDetailsComponent } from './registrar/case-details/case-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +45,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     CaseComponent,
     CaseListComponent,
     DeleteConfirmModalComponent,
+    ScheduleCaseComponent,
+    CaseDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +58,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatFormFieldModule, MatSelectModule
+    MatFormFieldModule,
+    MatSelectModule,
+    MatTooltipModule
   ],
   providers: [ provideHotToastConfig({position: 'top-right'}), provideAnimationsAsync(),],
   bootstrap: [AppComponent]

@@ -17,6 +17,7 @@ export class CaseComponent implements OnInit {
   lawyers: any[] = [];
   Judge: any[] = [];
   caseId: string | null = null;
+  isEditMode = false;
 
   constructor(
     private fb: FormBuilder,
@@ -46,6 +47,7 @@ export class CaseComponent implements OnInit {
       this.caseId = params.get('id');
       console.log('case id+',this.caseId)
       if (this.caseId) {
+        this.isEditMode = true;
         this.api.getCaseById(this.caseId).subscribe((data: any) => {
           console.log('data',data)
           this.caseForm = this.fb.group({
@@ -83,7 +85,7 @@ export class CaseComponent implements OnInit {
 
     const formData = this.caseForm.value;
 
-    if (this.caseId) {
+    if (this.isEditMode && this.caseId) {
       // UPDATE MODE
       this.api.updateCase({ ...formData, id: this.caseId }).subscribe(
         () => {
