@@ -66,6 +66,11 @@ deleteCase(id: string) {
     const url = `${baseUrl}${endPoint.allCase}`;
     return this.http.get(url);
   }
+  searchCases(term: string) {
+    // return this.http.get(`${this.baseUrl}/court-cases?search=${term}`);
+    const url = `${baseUrl}${endPoint.allCase}?search=${term}`;
+    return this.http.get(url);
+  }
 
   caseSchedules(){
     const url = `${baseUrl}${endPoint.caseSchedules}`;

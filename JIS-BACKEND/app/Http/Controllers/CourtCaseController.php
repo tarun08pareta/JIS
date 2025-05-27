@@ -85,10 +85,21 @@ class CourtCaseController extends Controller
     }
 
     // ✅ List All Cases (Optional)
-    public function index()
+    public function index( Request $request)
     {
+        $query = CourtCase::with(['judge', 'lawyer']);
 
-        return CourtCase::with(['judge', 'lawyer'])->get();
+    if ($request->has('search')) {
+        $searchTerm = $request->input('search');
+
+        $query->where(function ($q) use ($searchTerm) {
+            $q->where('defendantName', 'LIKE', "%{$searchTerm}%")
+              ->orWhere('victim', 'LIKE', "%{$searchTerm}%")
+              ->orWhere('arrestingOfficer', 'LIKE', "%{$searchTerm}%");
+        });
+    }
+
+    return $query->get();
     }
 
     // ✅ Show a Single Case

@@ -11,7 +11,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {  provideHotToastConfig } from '@ngneat/hot-toast';
 import { AboutComponent } from './pages/about/about.component';
@@ -30,6 +30,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { ScheduleCaseComponent } from './registrar/schedule-case/schedule-case.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { CaseDetailsComponent } from './registrar/case-details/case-details.component';
+import { LogoutConfirmationDialogComponent } from './layout/nav/logout-confirmation-dialog/logout-confirmation-dialog.component';
+import { CaseStudyComponent } from './pages/case-study/case-study.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,11 +50,14 @@ import { CaseDetailsComponent } from './registrar/case-details/case-details.comp
     DeleteConfirmModalComponent,
     ScheduleCaseComponent,
     CaseDetailsComponent,
+    LogoutConfirmationDialogComponent,
+    CaseStudyComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     CommonModule,
      MatDialogModule,
@@ -60,7 +66,8 @@ import { CaseDetailsComponent } from './registrar/case-details/case-details.comp
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule
   ],
   providers: [ provideHotToastConfig({position: 'top-right'}), provideAnimationsAsync(),],
   bootstrap: [AppComponent]

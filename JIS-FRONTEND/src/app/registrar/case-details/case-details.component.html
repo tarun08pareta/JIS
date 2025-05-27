@@ -10,7 +10,8 @@
         <div class="col-md-6"><strong>Status:</strong>
           <span class="badge" [ngClass]="{
             'bg-success': caseData.status === 'completed',
-            'bg-warning text-dark': caseData.status === 'pending'
+            'bg-warning text-dark': caseData.status === 'pending',
+            'bg-info': caseData.status === 'ongoing'
           }">{{ caseData.status | titlecase }}</span>
         </div>
         <div class="col-md-6"><strong>Defendant Name:</strong> {{ caseData.defendantName }}</div>
@@ -46,7 +47,8 @@
           <p><strong>Status:</strong>
             <span class="badge" [ngClass]="{
               'bg-success': schedule.status === 'completed',
-              'bg-secondary': schedule.status === 'pending'
+              'bg-secondary': schedule.status === 'pending',
+              'bg-info': schedule.status === 'scheduled'
             }">{{ schedule.status }}</span>
           </p>
         </div>

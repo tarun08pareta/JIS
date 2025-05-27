@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void {
-    const { userName, password } = this.loginForm.value;
     if (this.loginForm.valid) {
       // Simulate login success
       this.api.login(this.loginForm.value).subscribe({

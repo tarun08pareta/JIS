@@ -1,0 +1,35 @@
+<div class="case-container">
+  <div class="search-container">
+    <div class="search-bar">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="searchChanged.next($event)"
+        placeholder="Search cases by Defendant, Victim, or Officer"
+        class="search-input"
+      />
+      <i class="search-icon">🔍</i>
+    </div>
+  </div>
+
+  <div class="case-grid">
+    <div class="case-card" *ngFor="let case of caseList" [routerLink]="['/case-details', case.id]">
+      <div class="case-image-container">
+        <img [src]="case.image" alt="Case Image" class="case-image" />
+      </div>
+      <div class="case-content">
+        <div class="case-header">
+          <h3 class="case-title">{{ case.defendantName }} vs {{ case.victim }}</h3>
+          <p class="case-officer">Officer: {{ case.arrestingOfficer }}</p>
+        </div>
+        <p class="case-description">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, vel natus eius, illo nesciunt consequuntur
+          perspiciatis a similique assumenda recusandae, mollitia impedit animi unde!
+        </p>
+        <div class="case-footer">
+          <span class="view-details">View Details →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

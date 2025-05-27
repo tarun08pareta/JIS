@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         RoleSeeder::class,
         UserSeeder::class,
         CourtCaseSeeder::class,
-        // ScheduleSeeder::class
+        ScheduleSeeder::class
     ]);
     // CourtCase::factory(50)->create();
     // User::factory(10)->create();

@@ -11,6 +11,7 @@ import { CaseComponent } from './registrar/case/case.component';
 import { CaseListComponent } from './registrar/case-list/case-list.component';
 import { ScheduleCaseComponent } from './registrar/schedule-case/schedule-case.component';
 import { CaseDetailsComponent } from './registrar/case-details/case-details.component';
+import { CaseStudyComponent } from './pages/case-study/case-study.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Check for redirects
@@ -22,6 +23,10 @@ const routes: Routes = [
     path: 'case',
     component: CaseComponent,
     canActivate: [AuthGuard],
+  },
+  {
+  path:'case-study',
+  component:CaseStudyComponent
   },
   {
     path: 'case/:id',
