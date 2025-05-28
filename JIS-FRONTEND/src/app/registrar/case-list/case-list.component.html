@@ -40,10 +40,10 @@
               </td>
               <td>{{ caseItem.victim }}</td>
               <td>
-                  <button  class="btn btn-sm btn-warning me-2"  [routerLink]="['/case', caseItem.id]">
+                  <button  class="btn btn-sm btn-warning me-2" *ngIf="userRole !== 'lawyer'" [routerLink]="['/case', caseItem.id]">
               <i class="fas fa-edit"></i>
             </button>
-            <button class="btn btn-sm btn-danger" (click)="onDelete(caseItem.id)" >
+            <button class="btn btn-sm btn-danger" *ngIf="userRole !== 'lawyer'" (click)="onDelete(caseItem.id)" >
               <i class="fas fa-trash-alt"></i>
             </button>
             <button class="btn btn-sm btn-green"  [routerLink]="['/case-details', caseItem.id]">

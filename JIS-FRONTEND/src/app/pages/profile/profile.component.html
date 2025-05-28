@@ -1,0 +1,21 @@
+<div class="profile-container d-flex justify-content-center align-items-center py-5" *ngIf="user">
+  <div class="profile-card shadow-lg p-4">
+    <div class="text-center">
+      <img src="https://i.pravatar.cc/150?u={{ user.id }}" alt="User" class="profile-img mb-3">
+      <h4 class="fw-bold text-dark mb-0">{{ user.name }}</h4>
+      <p class="text-muted">{{ user.role }}</p>
+    </div>
+    <hr>
+    <div class="profile-info">
+      <div><strong>Username:</strong> {{ user.userName }}</div>
+      <div><strong>Email:</strong> {{ user.email }}</div>
+      <div><strong>Mobile:</strong> {{ user.mobileNo }}</div>
+      <div><strong>Gender:</strong> {{ user.gender }}</div>
+    </div>
+    <div class="d-grid mt-4">
+      <button class="btn btn-danger" (click)=" handleLogout()">
+        <i class="fas fa-sign-out-alt me-2"></i> Logout
+      </button>
+    </div>
+  </div>
+</div>

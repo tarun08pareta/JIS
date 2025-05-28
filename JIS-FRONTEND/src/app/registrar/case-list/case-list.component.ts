@@ -19,14 +19,48 @@ export class CaseListComponent implements OnInit {
     private dialog: MatDialog,
     private toast: HotToastService
   ) {}
-
+userRole: string = '';
   ngOnInit(): void {
+    const userData = localStorage.getItem('user');
+    console.log('user data', userData);
+     if (userData) {
+    const user = JSON.parse(userData);
+    this.userRole = user?.response?.user?.role?.toLowerCase();  // Normalize for comparison
+  }
     this.loadCases();
   }
 
   loadCases() {
+    const userData = localStorage.getItem('user');
+    if (!userData) {
+      this.toast.error('User not found. Please log in.');
+      return;
+    }
+
+    const user = JSON.parse(userData);
+    const userId = user?.response?.user?.id;
+    const userRole = user?.response?.user?.role;
+
+    if (!userId || !userRole) {
+      this.toast.error('Invalid user data.');
+      return;
+    }
+
     this.api.allCase().subscribe((data: any) => {
-      this.caseList = data;
+      const role = userRole?.toLowerCase();
+      if (role === 'judge' || role === 'lawyer') {
+        const filteredCases = data.filter((item: any) => {
+          return (
+            item.judge?.id === userId || item.lawyer?.id === userId
+          );
+        });
+        this.caseList = filteredCases;
+      } else {
+        // Admin or other roles: show all
+        this.caseList = data;
+      }
+
+
     });
   }
 
@@ -44,7 +78,7 @@ export class CaseListComponent implements OnInit {
         this.api.deleteCase(id).subscribe({
           next: () => {
             // Refresh the list after deletion
-            
+
             this.loadCases();
             this.toast.success('Case deleted successfully!');
           },

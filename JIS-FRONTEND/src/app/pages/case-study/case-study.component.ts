@@ -41,11 +41,17 @@ searchTerm: string = '';
 
 
   loadCases() {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
     this.api.allCase().subscribe((data: any) => {
-      
-      this.caseList = data.map((item: any, index: number) => ({
+      console.log(data);
+       const filteredCases = data.filter((item: any) => {
+
+      return item.judge.id  === user.response.user.id || item.lawyer.id === user.response.user.id;
+    });
+
+     this.caseList = filteredCases.map((item: any, index: number) => ({
       ...item,
-      image: this.imageUrls[index % this.imageUrls.length] // cycle through 4 images
+      image: this.imageUrls[index % this.imageUrls.length]
     }));
     });
   }

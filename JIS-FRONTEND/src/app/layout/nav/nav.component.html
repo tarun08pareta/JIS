@@ -20,34 +20,33 @@
         </ng-container>
 
         <ng-template #loggedInMenu>
-          <ng-container *ngFor="let item of navItems">
+  <ng-container *ngFor="let item of navItems">
 
-            <!-- Dropdown menu if children exist -->
-            <li *ngIf="item.children; else singleItem" class="nav-item dropdown mx-1">
-              <a class="nav-link dropdown-toggle text-white small" href="#" role="button" data-bs-toggle="dropdown">
-                {{ item.title }}
-              </a>
-              <ul class="dropdown-menu">
-                <li *ngFor="let child of item.children">
-                  <a class="dropdown-item" [routerLink]="child.path">{{ child.title }}</a>
-                </li>
-              </ul>
-            </li>
+    <!-- Dropdown menu if children exist -->
+    <li *ngIf="item.children; else singleItem" class="nav-item dropdown mx-1">
+      <a class="nav-link dropdown-toggle text-white small" href="#" role="button" data-bs-toggle="dropdown">
+        {{ item.title }}
+      </a>
+      <ul class="dropdown-menu">
+        <li *ngFor="let child of item.children">
+          <a class="dropdown-item" [routerLink]="child.path">{{ child.title }}</a>
+        </li>
+      </ul>
+    </li>
 
-            <!-- Normal menu item -->
-            <ng-template #singleItem>
-              <li class="nav-item mx-1">
-                <a *ngIf="'path' in item" class="nav-link text-white small" [routerLink]="item.path"
-                  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-                  (click)="item.action === 'logout' ? handleLogout() : null">
-                  {{ item.title }}
-                </a>
-              </li>
+    <!-- This template handles items without children -->
+    <ng-template #singleItem>
+      <li class="nav-item mx-1">
+        <a class="nav-link text-white small" [routerLink]="item.path" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">
+          {{ item.title }}
+        </a>
+      </li>
+    </ng-template>
 
-            </ng-template>
+  </ng-container>
+</ng-template>
 
-          </ng-container>
-        </ng-template>
       </ul>
     </div>
   </div>

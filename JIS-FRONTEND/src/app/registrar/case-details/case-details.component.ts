@@ -12,11 +12,17 @@ export class CaseDetailsComponent  implements OnInit {
 
   caseId: any;
   caseData: any;
-
+userRole: string = '';
   constructor(private api : ServiceService,private route: ActivatedRoute,
     private toast: HotToastService
   ) { }
   ngOnInit(): void {
+const userData = localStorage.getItem('user');
+  if (userData) {
+    const user = JSON.parse(userData);
+    this.userRole = user?.response?.user?.role?.toLowerCase();  // Normalize for comparison
+  }
+
     this.caseId = this.route.snapshot.params['id'];
     console.log('case id+',this.caseId)
     if(this.caseId) {

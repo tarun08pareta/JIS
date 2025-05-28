@@ -32,6 +32,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { CaseDetailsComponent } from './registrar/case-details/case-details.component';
 import { LogoutConfirmationDialogComponent } from './layout/nav/logout-confirmation-dialog/logout-confirmation-dialog.component';
 import { CaseStudyComponent } from './pages/case-study/case-study.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { CaseStudyComponent } from './pages/case-study/case-study.component';
     CaseDetailsComponent,
     LogoutConfirmationDialogComponent,
     CaseStudyComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

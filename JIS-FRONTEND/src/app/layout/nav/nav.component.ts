@@ -55,7 +55,8 @@ export class NavComponent implements OnInit {
 
     const commonItems = [
       { path: '/', title: 'Home', active: true },
-      { path: '/logout', title: 'Logout', active: false, action: 'logout' },
+      { path: '/profile', title: 'Profile', active: false },
+
     ];
 
     switch (this.userRole) {
@@ -90,8 +91,7 @@ export class NavComponent implements OnInit {
         return [
           { path: '/about', title: 'About', active: false },
           { path: '/case-study', title: 'Case Study', active: false },
-          { path: '/profile', title: 'Profile', active: false },
-          { path: '/payment', title: 'Payment', active: false },
+           { path: '/case-list', title: 'Case List' },
           ...commonItems,
         ];
       default:
