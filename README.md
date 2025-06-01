@@ -51,6 +51,9 @@ It is built using a **modern web stack** for a responsive and intuitive user exp
 ### 📋 Case List
 ![Case List](caseList.png)
 
+### 🔍 Case Details
+![Case Details](details.png)
+
 ### 👤 Profile Page
 ![Profile](profile.png)
 
