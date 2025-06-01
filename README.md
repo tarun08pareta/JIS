@@ -34,29 +34,26 @@ It is built using a **modern web stack** for a responsive and intuitive user exp
 ![Home](home.png)
 
 ### 🧾 About Page
-![About](./screenshots/about.png)
+![About](about.png)
 
 ### 🔐 Login Page
-![Login](./screenshots/login.png)
+![Login](login.png)
 
 ### ✍️ Signup Page
-![Signup](./screenshots/signup.png)
+![Signup](signup.png)
 
 ### 🗂️ Add Case
-![Add Case](./screenshots/add-case.png)
+![Add Case](case.png)
 
 ### 🕒 Add Schedule
-![Add Schedule](./screenshots/add-schedule.png)
+![Add Schedule](schedule.png)
 
 ### 📋 Case List
-![Case List](./screenshots/case-list.png)
+![Case List](caseList.png)
 
 ### 👤 Profile Page
-![Profile](./screenshots/profile.png)
+![Profile](profile.png)
 
-> *(Make sure all images are placed in a `screenshots/` folder inside your project directory.)*
-
----
 
 ## 📂 Key Features
 
