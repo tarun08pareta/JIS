@@ -1,6 +1,21 @@
-# Judiciary Information System (JIS) 🏛️
+# 🏛️ Judiciary Information System (JIS)
 
-A modern web-based Judiciary Information System designed to streamline judicial workflows including case management, scheduling, and secure user authentication for Judges, Lawyers, and Registrars.
+The **Judiciary Information System (JIS)** is a full-stack web application designed to **modernize judicial processes**. This system enhances the efficiency of courts by managing legal cases, scheduling hearings, and enabling secure access for judges, lawyers, and registrars with personalized dashboards and role-specific features.
+
+---
+
+## 📘 About the Project
+
+The project provides a centralized platform to:
+
+- Manage and track court cases
+- Add and schedule hearings
+- Provide separate login access for Judges, Lawyers, and Registrars
+- Ensure secure authentication and role-based control
+- View comprehensive case details and history
+- Simplify administrative and clerical work in judicial offices
+
+It is built using a **modern web stack** for a responsive and intuitive user experience.
 
 ---
 
@@ -9,32 +24,64 @@ A modern web-based Judiciary Information System designed to streamline judicial 
 - **Frontend:** Angular, HTML, CSS, Bootstrap, TypeScript  
 - **Backend:** Laravel (PHP)
 - **Database:** PostgreSQL
-- **Version Control:** Git
+- **Version Control & Deployment:** Git, GitHub
 
 ---
 
-## 📌 Features
+## 📸 Screenshots
 
-### ✅ Core Modules
-- **Login & Signup:**  
-  Secure user authentication with separate access for Judges, Lawyers, and Registrars.
+### 🏠 Home Page
+![Home](home.png)
 
-- **Profile Page:**  
-  Personalized profile management for each user role.
+### 🧾 About Page
+![About](./screenshots/about.png)
 
-- **Case List:**  
-  View and manage current, past, and upcoming court cases.
+### 🔐 Login Page
+![Login](./screenshots/login.png)
 
-- **Add Schedules:**  
-  Add or update hearing schedules with date/time and case references.
+### ✍️ Signup Page
+![Signup](./screenshots/signup.png)
 
-- **Case Snapshot:**  
-  View detailed case information including involved parties, status, and hearing history.
+### 🗂️ Add Case
+![Add Case](./screenshots/add-case.png)
 
-- **Search & Filter Cases:**  
-  Quickly locate historical and ongoing cases through powerful search and filter tools.
+### 🕒 Add Schedule
+![Add Schedule](./screenshots/add-schedule.png)
+
+### 📋 Case List
+![Case List](./screenshots/case-list.png)
+
+### 👤 Profile Page
+![Profile](./screenshots/profile.png)
+
+> *(Make sure all images are placed in a `screenshots/` folder inside your project directory.)*
 
 ---
+
+## 📂 Key Features
+
+### 🔐 User Authentication
+- Secure login/signup system with Laravel authentication
+- Separate dashboards for Judges, Lawyers, and Registrars
+
+### 📋 Case Management
+- Add new legal cases with involved parties, description, and status
+- Edit/update case details
+- View detailed case snapshots
+
+### 🕒 Hearing Schedule
+- Schedule hearings for specific cases
+- View upcoming and past hearing schedules
+
+### 👤 Profile Management
+- Each user can view and update their personal profile
+- Judges and Lawyers can manage their assigned cases
+
+### 🔍 Case Search & Filter
+- Quickly browse and search court records by case ID, type, or party name
+
+---
+
 
 ## 📂 Project Structure (Major Modules)
 
